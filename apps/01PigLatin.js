@@ -8,11 +8,57 @@ var rl = readline.createInterface({
 });
 
 
+/*
+So the basic idea of Pig Latin is to take the first letters of the word up to the
+ first vowel, move them to the back, and add 'ay' to the end of it.
+if the first letter is a vowel just add yay to the end.
+
+
+we have a word
+a,e,i,o,u, y
+
+find the location of a in the word, store it
+find the location of e in the word, if the location is before the location of previosuly found vowel, store it
+find the location of i in the word, if the location is before the location of previosuly found vowel, store it
+.....ect
+
+if the first letter is a vowel just add yay to the end
+dont add anything else
+
+//now i know where the loctaion of the first vowel is
+
+i need a new word that only contains the letters up tothe first vowel
+i also need a new word that only contains the letters from yhe first vowel
+
+rearrange my words into a new wod with 'ay'
+and we are done
+*/
+
 function pigLatin(word) {
 
   // Your code here
+  var vowelIndex = word.indexOf('a');
 
+
+  var eindex = word.indexOf('e');
+if (eindex < vowelIndex){
+  vowelIndex = eindex;
 }
+
+ var iindex = word.indexOf('i');
+if (iindex < vowelIndex){
+  vowelIndex = iindex;
+}
+//add var for O,U, Y
+
+if (vowelIndex === 0){
+  return word + "yay";
+}
+
+var begin = word.splice(0, vowelIndex);
+var end = word.splice(vowelIndex, word.length);
+
+return end + begin + 'ay';
 
 
 function getPrompt() {
