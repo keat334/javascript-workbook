@@ -26,6 +26,9 @@ var alwaysTrue = function () {
 // argument1 is equal to argument2
 
 function equals(argument1, argument2) {
+  if (argument1 === argument2){
+    return true;
+  }
 }
 
 // Problem 2:
@@ -34,16 +37,32 @@ function equals(argument1, argument2) {
 // parameter1 is less than or equal to parameter2
 
 function lessThanOrEqualTo(parameter1, parameter2) {
+  console.log(parameter1 <= parameter2);
+  return true;
+  //<= true
 }
 
 // Problem 3:
 // write a function named add(number1, number2)
 // add will add two numbers and return the result
+function add(number1, number2) {
+  return number1 + number2;
+}
+
+var x = add(3, 5);
+
+x;
+
 
 // Problem 4:
 // write a function named addThree(number1, number2, number3)
 // this function will add three numbers
 // you must call your function add() in addThree()
+function addThree(number1, number2, number3) {
+return add + number3;
+}
+
+
 
 
 // ****
@@ -117,7 +136,9 @@ function whichSpecies(character) {
 // return the string "divisible by 2" when number % 2 === 0
 // return the string "divisible by 3" when number % 3 === 0
 // return the string "divisible by 5" when number % 5 === 0
+function testNumber(number){
 
+}
 
 // ****
 // Concept Checkpoint

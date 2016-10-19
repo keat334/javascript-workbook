@@ -18,13 +18,7 @@ console.log("Try again");
 if (hand2 !== 'rock' && hand2 !== 'paper' && hand2 !== 'scissors'){
 console.log("Try again");
 }
-/*
-else if (hand2 !== 'rock' || hand2 !== 'paper' || hand2 !== 'scissors'){
-return null;
-}
-hand1 = hand1.toLowerCase()
-hand2 = hand2.toLowerCase() 
-*/
+
 
   // Write code here
 if (hand1 === hand2) {
