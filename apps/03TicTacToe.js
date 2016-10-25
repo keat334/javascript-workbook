@@ -23,24 +23,125 @@ function printBoard() {
   console.log('2 ' + board[2].join(' | '));
 }
 
+function toggleSwitch() {
+  playerTurn = (playerTurn === 'X') ? 'O' : 'X';
+}
+
+
+
+
 function horizontalWin() {
   // Your code here
+ 
+  if(
+    (board[0][0] === playerTurn && board[0][1] === playerTurn && board[0][2] === playerTurn)||
+    (board[1][0] === playerTurn && board[1][1] === playerTurn && board[1][2] === playerTurn)||
+    (board[2][0] === playerTurn && board[2][1] === playerTurn && board[2][2] === playerTurn)
+  ){
+    console.log("player wins"); 
+    console.log(""); 
+      return true;
+    }
+    else{
+      return false;
+    };
+
+
 }
 
 function verticalWin() {
   // Your code here
+   if(
+    (board[0][0] === playerTurn && board[1][0] === playerTurn && board[2][0] === playerTurn)||
+    (board[0][1] === playerTurn && board[1][1] === playerTurn && board[1][2] === playerTurn)||
+    (board[0][2] === playerTurn && board[1][2] === playerTurn && board[2][2] === playerTurn)
+  ){
+    console.log("Player wins");
+    console.log("");
+      return true;
+    }
+    else{
+      return false;
+    }
 }
 
 function diagonalWin() {
   // Your code here
+  if(
+    (board[0][0] === playerTurn && board[1][1] === playerTurn && board[2][2] === playerTurn) ||
+    (board[0][2] === playerTurn && board[1][1] === playerTurn && board[2][0] === playerTurn)
+  ){
+    console.log("Player Wins!");
+    console.log(" ");
+    return true;
+  }
+  else{
+    return false;
+  }
 }
 
 function checkForWin() {
+ /*
+  horizontalWin();
+  verticalWin();
+  diagonalWin();
+  console.log("Player ", playerTurn, " Wins!");
+*/
+
+  if (horizontalWin() || verticalWin() || diagonalWin()) {
+      console.log('Player ' + playerTurn + ' Wins!');
+      return true;
+    }
   // Your code here
 }
 
 function ticTacToe(row, column) {
+  //start here, row might be 1, column might be 2
+  //check and see what row and column was selected
+  //insert pkayerTurn into selected row
+  //Switch to other player
+  //repeat
+  if(!row || !column || !board[row][column]) {
+    console.log("Invalid number");
+  } else if (board[row][column] === ' ') {
+    board[row][column] = playerTurn;
+    checkForWin();
+    toggleSwitch();
+  }
+  /*
+ if(!row || !column || !board[row][column]) {
+   console.log("Invalid number");
+ } else if (board[row][column] === ' ') {
+   board[row][column] = playerTurn;
+   checkForWin();
+   
+   playerTurn = (PlayerTurn === 'X') ? 'O' : 'X';
+ }
+ else{
+   console.log('that spot is taken, try again');
+ }
+ */
+
+/*
+if(board[0][0]){
+  console.log("wrong");
+  board[row][column] = playerTurn;
+}
+*/
+  //board[row][column] = playerTurn;
+  
+//board[row][column] = playerTurn;
+//checkForWin();
+
+
+//toggleSwitch();
+
+
   // Your code here
+
+  //puts the x or o in the array 
+  //and then checks if there is a winner
+  //change whos turn it is
 }
 
 function getPrompt() {
