@@ -7,6 +7,8 @@ var rl = readline.createInterface({
   output: process.stdout
 });
 
+
+
 var stacks = {
   a: [4, 3, 2, 1],
   b: [],
@@ -19,23 +21,49 @@ function printStacks() {
   console.log("c: " + stacks.c);
 }
 
-function movePiece() {
+function movePiece(startStack, endStack) {
   // Your code here
+  //pop varriable stacks
+  //push to new stack
+  //check if smaller one is under new pop
+
+  //get a piece off the top of the startStack and save it
+  //move it to the endStack
 
 }
 
-function isLegal() {
+function isLegal(startStack, endStack) {
   // Your code here
+  //get a reference to the actual startStack and save it
+  //save into variable
+  //does start stack have anything in it??
+  //get a reference to the actual endStack and save it
+
+  // is the piece from the start stack bigger or smaller than the piece on
+  //top of the endStack
+  //is there anything even in the end stack
+
+  // if bad return something
+  // if good return something else
+  //
+  //is the piece on top bigger or smaller than the piece on bottom
 
 }
 
 function checkForWin() {
   // Your code here
-
+  // does stack 'c' have a length of 4? using .length
 }
 
 function towersOfHanoi(startStack, endStack) {
   // Your code here
+  //check is value is smaller or bigger the one being placed
+  //check if the move is ok
+  //if its okay make the move
+
+  //did the player win yet??
+  
+
 
 }
 
