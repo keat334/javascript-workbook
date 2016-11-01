@@ -12,6 +12,8 @@ var board = [];
 var solution = '';
 var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
+var move;
+
 function printBoard() {
   for (var i = 0; i < board.length; i++) {
     console.log(board[i]);
@@ -35,6 +37,7 @@ function generateHint() {
 
 function mastermind(guess) {
   // your code here
+  move++
 }
 
 
@@ -73,6 +76,6 @@ if (typeof describe === 'function') {
 
 } else {
 
-  generateSolution();
+ //  generateSolution();
   getPrompt();
 }
