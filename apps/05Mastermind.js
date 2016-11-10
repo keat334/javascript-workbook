@@ -20,24 +20,55 @@ function printBoard() {
   }
 }
 
-function generateSolution() {
+function generateSolution(solution, guess) {
+ 
   for (var i = 0; i < 4; i++) {
     var randomIndex = getRandomInt(0, letters.length);
     solution += letters[randomIndex];
   }
+  
+
 }
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function generateHint() {
+function generateHint(solution, guess) {
   // your code here
+  
+  solution = 'abce'
+  var numberOfCorrectLetterLocations =0;
+  var numberOfLettersInWrongLocation =0;
+  var solutionArray = solution.split('');
+  var guessArray = guess.split('');
+
+  for(var i =0; i < solutionArray.length; i++)
+  {
+    if(solutionArray[i] === guessArray[i])
+    {
+      numberOfCorrectLetterLocations ++;
+      solutionArray[i] = null;
+    }
+  }
+
+  for(var i =0; i < solutionArray.length; i++)
+  {
+    if(solutionArray.indexOf(guessArray[i]) > -1){
+
+    }    numberOfLettersInWrongLocation ++;
+    solutionArray[i] = null;
+  }
+}
 }
 
 function mastermind(guess) {
   // your code here
   move++
+  if(guess == solution){
+    return "Whatever"
+  }
+  generateHint()
 }
 
 

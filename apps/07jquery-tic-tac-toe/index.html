@@ -1,29 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tic Tac Toe</title>
-  <link rel="stylesheet" href="style.css" />
+    <title>TicTacToe</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-  <div class="row">
-    <div data-cell="0"></div>
-    <div data-cell="1"></div>
-    <div data-cell="2"></div>
-  </div>
-  <div class="row">
-    <div data-cell="3"></div>
-    <div data-cell="4"></div>
-    <div data-cell="5"></div>
-  </div>
-  <div class="row">
-    <div data-cell="6"></div>
-    <div data-cell="7"></div>
-    <div data-cell="8"></div>
-  </div>
-  <div id="announce-winner"></div>
-  <button id="clear">Clear Board</button>
-  <script src="../../vendor/jquery.js"></script>
-  <script type="text/javascript" src="./script.js"></script>
+
+<div id="game-wrap">
+    
+    <div class="row">
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+
+    <div class="row">
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+
+    <div class="row">
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+
+</div>
+
+<div id="panel">
+    <input type="text" id="player-1-inp" placeholder="Enter player 1">
+    <input type="text" id="player-2-inp" placeholder="Enter player 2">
+    <button id="playButton">Play!</button>
+    <h1 id="board"></h1>
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
