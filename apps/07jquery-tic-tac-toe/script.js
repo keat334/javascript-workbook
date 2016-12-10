@@ -1,237 +1,96 @@
-/*
 'use strict';
 
 $(document).on('ready', function() {
   // Put app logic in here
-var datacells = $('[data-cell]');
-datacells.click(function(){
+'use strict';
 
-  console.log("hello");
-  $(this).text
-});
+$(document).ready(function() {
 
+    var $button = $("#clear")
+    var $data_cell = $('[data-cell]');
+    var playerTurn = "X";
+    var $cell0 = $('[data-cell="0"]');
+    var $cell1 = $('[data-cell="1"]');
+    var $cell2 = $('[data-cell="2"]');
+    var $cell3 = $('[data-cell="3"]');
+    var $cell4 = $('[data-cell="4"]');
+    var $cell5 = $('[data-cell="5"]');
+    var $cell6 = $('[data-cell="6"]');
+    var $cell7 = $('[data-cell="7"]');
+    var $cell8 = $('[data-cell="8"]');
 
-checkForWin();
+    $data_cell.click(function() {
+        $(this).text("playerTurn");
+        checkForWin();
+        playerTurn = (playerTurn == 'X') ? 'O' : 'X';
 
-});
+    });
 
-var datacells = $('[data-cell="0"]')
-function checkForWin() {
- /*
-  horizontalWin();
-  verticalWin();
-  diagonalWin();
-  console.log("Player ", playerTurn, " Wins!");
-*/
-/*
-  if (horizontalWin() || verticalWin() || diagonalWin()) {
-      console.log('Player ' + playerTurn + ' Wins!');
-      return true;
-    }
-  // Your code here
-}
+    $button.click(function() {
+        $cell0 = $('[data-cell="0"]').text("");
+        $cell1 = $('[data-cell="1"]').text("");
+        $cell2 = $('[data-cell="2"]').text("");
+        $cell3 = $('[data-cell="3"]').text("");
+        $cell4 = $('[data-cell="4"]').text("");
+        $cell5 = $('[data-cell="5"]').text("");
+        $cell6 = $('[data-cell="6"]').text("");
+        $cell7 = $('[data-cell="7"]').text("");
+        $cell8 = $('[data-cell="8"]').text("");
+        playerTurn = "X";
+        $('#announce-winner').text("");
+    });
+    //Write a function checkForWin() that checks each combination of winning data-cells and see if they all contain the current playerTurn
+    //Remember to use .text() to GET the the text content of any data-cell.
+    //If so, select '#announce-winner' and SET its .text() to say 'Player ' + playerTurn + 'Wins!'
+    //Run this function every time a player make a mark, but before the the playerTurn switches
+    //if datacell-0, datacell-1, and data-cell2 are all equal to playeter turn = you win!;
+    // <div data-cell="0"></div>
 
-*/
+   
 
-var player1Name="" , player2Name="", turn = "";
-var grid =  [[0,0,0],[0,0,0],[0,0,0]];
-var hasWinner = 0, moveCount=0;
+    function checkForWin() {
 
-function boardMsg(x){
-    return $("#board").text(x);
-}
-
-function setTurn(){
-    var r = Math.floor((Math.random() * 2) + 1);
-    hasWinner=0;
-    if(r==1){
-        turn = player1Name;
-        boardMsg(player1Name+"'s turn now!");
-    }
-    else{
-        turn = player2Name;
-        boardMsg(player2Name+"'s turn now!");
-    }
-}
-function init(){
-        turn = "";
-        grid =  [[0,0,0],[0,0,0],[0,0,0]];
-        boardMsg("");
-        $(".col").map(function() {
-            $(this).text("");
-        }).get();
-        hasWinner = 0;
-        moveCount=0;
-}
-
-$("#playButton").click(function (){
-
-    if(hasWinner==1){
-        init();
-    }
-
-    player1Name = $("#player-1-inp").val();
-    player2Name = $("#player-2-inp").val();
-
-    if(player1Name=="" || player2Name==""){
-        alert("Please set player all the names.");
-        return;
-    }
-
-    setTurn();
-});
-
-$(".col").click(function (){
-
-    if(player1Name=="" || player2Name==""){
-        alert("Please set player all the names.");
-        return;
-    }
-
-    var row = $(this).parent().index();
-    var col = $(this).index();
-
-    if(grid[row][col]!==0){
-        alert("This position is taken. Please try other position.");
-        return;
-    }
-    if(hasWinner==1){
-        alert("Please click play again");
-        return;
-    }
-
-    if(turn==player1Name){
-        moveCount++;
-        $(this).text("O");
-        grid[row][col] = 1;
-        var ifWon = winnerCheck(1,player1Name);
-        if(!ifWon){
-            if(moveCount>=9){
-                boardMsg("Match Drawn!");
-                moveCount=0;
-                $("#playButton").text("Play again");
-                hasWinner=1;
-                return;
-            }else{
-                turn = player2Name;
-                boardMsg(player2Name+"'s turn now!");
-            }
-            return;    
+        //horizontal check for win
+        if ($cell0.text() === playerTurn && $cell1.text() === playerTurn && $cell2.text() === playerTurn) {
+            $('#announce-winner').text('Player ' + playerTurn + ' Wins!');
         }
-        else{
-            return;
-        }        
-    }
-    else if(turn==player2Name){
-        moveCount++;
-        $(this).text("X");
-        grid[row][col] = 2;
-        var ifWon = winnerCheck(2,player2Name);
-        if(!ifWon){
-            if(moveCount>=9){
-                boardMsg("Match Drawn!");
-                moveCount=0;
-                $("#playButton").text("Play again");
-                hasWinner=1;
-                return;
-            }else{
-                turn = player1Name;
-                boardMsg(player1Name+"'s turn now!");
-            }
-            return;    
+
+        if ($cell3.text() === playerTurn && $cell4.text() === playerTurn && $cell5.text() === playerTurn) {
+            $('#announce-winner').text('Player ' + playerTurn + ' Wins!');
         }
-        else{
-            return;
-        }        
+
+        if ($cell6.text() === playerTurn && $cell7.text() === playerTurn && $cell8.text() === playerTurn) {
+            $('#announce-winner').text('Player ' + playerTurn + ' Wins!');
+        }
+
+
+        //verticle check for win
+        if ($cell0.text() === playerTurn && $cell3.text() === playerTurn && $cell6.text() === playerTurn) {
+            $('#announce-winner').text('Player ' + playerTurn + ' Wins!');
+        }
+
+        if ($cell1.text() === playerTurn && $cell4.text() === playerTurn && $cell7.text() === playerTurn) {
+            $('#announce-winner').text('Player ' + playerTurn + ' Wins!');
+        }
+
+        if ($cell2.text() === playerTurn && $cell5.text() === playerTurn && $cell8.text() === playerTurn) {
+            $('#announce-winner').text('Player ' + playerTurn + ' Wins!');
+        }
+
+        //diagonal downward check for win
+        if ($cell0.text() === playerTurn && $cell4.text() === playerTurn && $cell8.text() === playerTurn) {
+            $('#announce-winner').text('Player ' + playerTurn + ' Wins!');
+        }
+
+        //diagonal upward check for win
+        if ($cell6.text() === playerTurn && $cell4.text() === playerTurn && $cell2.text() === playerTurn) {
+            $('#announce-winner').text('Player ' + playerTurn + ' Wins!');
+        }
+
+
     }
+
+
 });
-
-$(".col").click(function (){
-
-    if(player1Name=="" || player2Name==""){
-        alert("Please set player all the names.");
-        return;
-    }
-
-    var row = $(this).parent().index();
-    var col = $(this).index();
-
-    if(grid[row][col]!==0){
-        alert("This position is taken. Please try other position.");
-        return;
-    }
-    if(hasWinner==1){
-        alert("Please click play again");
-        return;
-    }
-
-    if(turn==player1Name){
-        moveCount++;
-        $(this).text("O");
-        grid[row][col] = 1;
-        var ifWon = winnerCheck(1,player1Name);
-        if(!ifWon){
-            if(moveCount>=9){
-                boardMsg("Match Drawn!");
-                moveCount=0;
-                $("#playButton").text("Play again");
-                hasWinner=1;
-                return;
-            }else{
-                turn = player2Name;
-                boardMsg(player2Name+"'s turn now!");
-            }
-            return;    
-        }
-        else{
-            return;
-        }        
-    }
-    else if(turn==player2Name){
-        moveCount++;
-        $(this).text("X");
-        grid[row][col] = 2;
-        var ifWon = winnerCheck(2,player2Name);
-        if(!ifWon){
-            if(moveCount>=9){
-                boardMsg("Match Drawn!");
-                moveCount=0;
-                $("#playButton").text("Play again");
-                hasWinner=1;
-                return;
-            }else{
-                turn = player1Name;
-                boardMsg(player1Name+"'s turn now!");
-            }
-            return;    
-        }
-        else{
-            return;
-        }        
-    }
 });
-
-function winnerCheck(n,playerName){
-    if(
-
-        (grid[0][0]==n && grid[0][1]==n && grid[0][2]==n) ||
-        (grid[1][0]==n && grid[1][1]==n && grid[1][2]==n) ||
-        (grid[2][0]==n && grid[2][1]==n && grid[2][2]==n) ||
-
-        (grid[0][0]==n && grid[1][0]==n && grid[2][0]==n) ||
-        (grid[0][1]==n && grid[1][1]==n && grid[2][1]==n) ||
-        (grid[0][2]==n && grid[1][2]==n && grid[2][2]==n) ||
-
-        (grid[0][0]==n && grid[1][1]==n && grid[2][2]==n)||
-        (grid[0][2]==n && grid[1][1]==n && grid[2][0]==n)
-
-
-        ){
-        boardMsg(playerName+" won the game!");
-        hasWinner = 1;
-        moveCount=0;
-        $("#playButton").text("Play again");
-        return true;
-    }
-    return false;
-}
+});
