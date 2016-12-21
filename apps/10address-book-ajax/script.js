@@ -54,6 +54,14 @@ $.ajax('https://reqres-api.herokuapp.com/api/users', {
   success: function(user) {
     
       var IDS = user.id;
+      /*
+      var partOne = IDS.substring(0, 1);
+      var partTwo = IDS.substring(1, 4);
+      var partThree = IDS.substring(4,7);
+      var partFour = IDS.substring(7,11);
+      var phone_Num = '(' + part_One + ')' + '(' + part_Two + ')' + '(' + part_Three + ')' + '(' part_Four + ')';
+     */
+
       var str = '<tr>' + 
       '<td>' + 
       '<h3>' + user.first_name + '  ' + user.last_name + '</h3>' + 

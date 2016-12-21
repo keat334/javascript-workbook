@@ -3,41 +3,67 @@
 $(document).ready(function() {
   // You code here
 
-var getGistsSettings = {
-
-
-};
-
-var getGistSettings = {
-
-
-};
-
-var getGistComments = {
-
-
-}; 
-
-
-
-  $.ajax('http://127.0.0.1:8080/apps/11gist-blog/api/gists.json', {
+  $.ajax('api/gists.json', {
   success: function(response) {
     response.forEach(function(gists){
       var IDS = gists.id;
-      var str = gists.description;
-      //$('#posts').append(str);
-      console.log(IDS + '  ' + str);
-      //$('#names').append('<tr>' + '<td>' + user.id + '</td>' + '<td>' + user.first_name + '</td>' + '<td>' + user.last_name + '</td>' + '<td>' + '<a href="#" data-id="' + user.id + '">view</a></td>' + '</tr>');
-})
-  }
+      var url = gists.url;
+      var desc = gists.description;
+      var posts = desc.substring(0, 5);
+      var newDesc = desc.substring(6);
+      var str = '<tr>' + 
+                '<td>' + 
+                '<a href = "#" data-url="' + gists.url + '">' + newDesc + '</a>' + 
+                '</td>' + 
+                '</tr>';
+
+      if(posts === '#post'){
+        $('#post').append(str);     
+      } //end if statement
+
+      }) //end forEach function
+  } //end success call
+}); //end ajax call
 
 
-});
 
 
 
-$.ajax('http://127.0.0.1:8080/apps/11gist-blog/api/gists.json')
+$('#post').on('click', 'a',function(links){
+  links.preventDefault();
+  var URL = $(this).data('url');
+  
+  $.ajax(URL, {
+    success: function(post) {
+      var test = post.files;
+      var str = '<div>' + '<h4>' + 'Post' + '</h4>' + marked(post.files['post.md'].content) + '</div>';     
+      
+      $('#comments').empty();
+      $('#comments').append(str); 
+      console.log('yes: ' + post.comments_url);
+
+    } //end of success call
+  }); //end ajax call
+
+var urls = post.comments_url;
+
+ $.ajax(urls, {
+    success: function(comment) {
+      console.log('asd');
+      //console.log(logins.user);
+      $('#post').empty();
+        
+          var commentt = '<li><span>' + comment.user.login + '</span> says "<span>' + comment.body + '"</span></li>';
+          $('#post').append(commentt);
+         
+        
+    } //end of success call
+  }); //end ajax call
 
 
 
-});
+}); // end .on(click) method for posts
+
+
+}); //End program
+
