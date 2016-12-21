@@ -36,7 +36,7 @@ $('#post').on('click', 'a',function(links){
   $.ajax(URL, {
     success: function(post) {
       var test = post.files;
-      var str = '<div>' + '<h4>' + 'Post' + '</h4>' + marked(post.files['post.md'].content) + '</div>';     
+      var str = '<div>' + marked(post.files['post.md'].content) + '</div>';     
       
       $('#comments').empty();
       $('#comments').append(str); 
