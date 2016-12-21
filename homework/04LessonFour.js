@@ -32,23 +32,23 @@ var numberArrayAfterUnshift = [0, 1, 2, 3, 4, 5];
 // Use pop() and shift() to make the array bravestWarriors look like this:
 // ['Danny', 'Chris', 'Beth', 'Wallow']
 var bravestWarriors = ['Catbug', 'Danny', 'Chris', 'Beth', 'Wallow', 'Impossibear'];
-bravestWarriors.shift();
-bravestWarriors.pop();
-
+bravestWarriors.pop('Impossibear');
+bravestWarriors.shift('Catbug');
 // Problem 6:
 // Use push() and unshift to make the array fruit look like this:
 // ['banana', 'kiwi', 'apple', 'orange', 'grapes', 'mango']
 var fruit = ['kiwi', 'apple', 'orange', 'grapes'];
 fruit.push('mango');
 fruit.unshift('banana');
-
 // ****
 // Objects (Associative Arrays)
 // ****
 
 // Problem 7:
 // Create an empty object
-var emptyObject = {};
+var emptyObject = {
+  arr:[]
+};
 
 // Problem 8:
 // Create an object with the following key, value pairs:
@@ -57,9 +57,9 @@ var emptyObject = {};
 // 3) name:         'bob'
 // 4) number:       42
 var problemEightObject = {
-  emptyObject: {},
-  emptyArray: []
-  name: 'bob'
+  emptyObject:{},
+  emptyArray: [],
+  name: 'bob',
   number: 42
 };
 
@@ -67,11 +67,14 @@ var problemEightObject = {
 // DON'T EDIT problemNineObject!!!!
 var problemNineObject = {
   'fav food': 'pizza',
-  city:       'houston'
+  city:       'austin'
 };
 // update 'fav food' so that its value is tacos
 // update city so that its value is austin
-
+var problemNineObject = {
+  'fav food': 'tacos',
+  city: 'austin'
+};
 // Problem 10:
 // DON'T EDIT nestedObjects!!!!
 var nestedObjects = {
@@ -86,7 +89,17 @@ var nestedObjects = {
   }
 };
 // update the starring property to have the value 'Tim Robbins'
-nestedObjects.users['bob roberts'].starring = 'Tim Robbins';
+var nestedObjects = {
+  someNumbers: [1, 2, 3.14159, 4, 5, 6],
+  users: {
+    'fred astaire': {
+      hometown: 'Omaha'
+    },
+    'bob roberts': {
+      starring: 'Tim Robbins'
+    }
+  }
+};
 
 // ****
 // Concept Checkpoint
@@ -96,7 +109,7 @@ nestedObjects.users['bob roberts'].starring = 'Tim Robbins';
 // What is an associative array? What is the difference between an array and an associative array?
 //
 // Your Answer Goes Here:
-//
+//arrays have an implied value starting with 0, associative arrays have a directly stated key with an associated value.
 //
 
 // ****
