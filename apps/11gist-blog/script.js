@@ -11,11 +11,17 @@ $(document).ready(function() {
       var desc = gists.description;
       var posts = desc.substring(0, 5);
       var newDesc = desc.substring(6);
-      var str = '<tr>' + 
+      var str = '<div class="box">' + 
+                '<tr>' + 
                 '<td>' + 
-                '<a href = "#" data-url="' + gists.url + '">' + newDesc + '</a>' + 
+                '<a href = "#" data-url="' + gists.url + '">' + 
+                '<h1 align="center">' + '<font face="Arial Black" color="green">' + newDesc + 
+                '</font>' + 
+                '</h1>' + 
+                '</a>' + 
                 '</td>' + 
-                '</tr>';
+                '</tr>'+ 
+                '</div>';
 
       if(posts === '#post'){
         $('#post').append(str);     
@@ -36,31 +42,36 @@ $('#post').on('click', 'a',function(links){
   $.ajax(URL, {
     success: function(post) {
       var test = post.files;
-      var str = '<div>' + marked(post.files['post.md'].content) + '</div>';     
+      var str = '<div class="right_Side">' + 
+         '<div class="box" id="details">' + 
+         '<font face="monospace" color="red">' + 
+         marked(post.files['post.md'].content) + 
+         '</font>' + 
+         '</div>' + 
+         '</div>';     
       
-      $('#comments').empty();
-      $('#comments').append(str); 
-      console.log('yes: ' + post.comments_url);
+      $('#comments').empty().append(str);
+      
 
     } //end of success call
   }); //end ajax call
 
 var urls = post.comments_url;
 
+
+/*
  $.ajax(urls, {
-    success: function(comment) {
+    success: function(comments) {
       console.log('asd');
       //console.log(logins.user);
-      $('#post').empty();
-        
-          var commentt = '<li><span>' + comment.user.login + '</span> says "<span>' + comment.body + '"</span></li>';
-          $('#post').append(commentt);
+      $('#comments').empty();
+
          
         
     } //end of success call
   }); //end ajax call
 
-
+*/
 
 }); // end .on(click) method for posts
 

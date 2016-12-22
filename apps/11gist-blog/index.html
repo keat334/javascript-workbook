@@ -2,11 +2,57 @@
 <html>
 <head>
   <title>Gist Blog</title>
+  <style>
+.right_Side {
+    float:left;
+    width:= 100%;
+    box-shadow: 0 0 10px #bdbdbd;
+
+}
+.left_Side {
+    float:left;
+    width:25%;
+}
+
+.box{
+    height: 100%;
+    background-color: white;
+    border:1px solid #bdbdbd;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 0 10px #bdbdbd;
+    -webkit-box-shadow: 0 0 10px #bdbdbd;
+    box-shadow: 0 0 10px #bdbdbd;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+
 </head>
 <body>
-  
+  <div id="head">
+    <h1>
+      The Blog of the World
+    </h1>
+  </div>
+   
+    <div class="left_Side">
+    
   <div id="post"></div>
+  </div>
   <ul id="comments"></ul>
+ 
+ 
+ 
+
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
   <script type="text/javascript" src="script.js"></script>
