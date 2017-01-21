@@ -8,57 +8,40 @@ var rl = readline.createInterface({
 });
 
 
-/*
-So the basic idea of Pig Latin is to take the first letters of the word up to the
- first vowel, move them to the back, and add 'ay' to the end of it.
-if the first letter is a vowel just add yay to the end.
-
-
-we have a word
-a,e,i,o,u, y
-
-find the location of a in the word, store it
-find the location of e in the word, if the location is before the location of previosuly found vowel, store it
-find the location of i in the word, if the location is before the location of previosuly found vowel, store it
-.....ect
-
-if the first letter is a vowel just add yay to the end
-dont add anything else
-
-//now i know where the loctaion of the first vowel is
-
-i need a new word that only contains the letters up tothe first vowel
-i also need a new word that only contains the letters from yhe first vowel
-
-rearrange my words into a new wod with 'ay'
-and we are done
-*/
-
 function pigLatin(word) {
 
-  // Your code here
-  var vowelIndex = word.indexOf('a');
+word = word.toLowerCase();
+var vowelIndex = -1;
 
-
-  var eindex = word.indexOf('e');
-if (eindex < vowelIndex){
-  vowelIndex = eindex;
+if ( ( word.indexOf('a') > -1 && word.indexOf('a') < vowelIndex ) || vowelIndex === -1 ) {
+    vowelIndex = word.indexOf('a');
 }
 
- var iindex = word.indexOf('i');
-if (iindex < vowelIndex){
-  vowelIndex = iindex;
-}
-//add var for O,U, Y
-
-if (vowelIndex === 0){
-  return word + "yay";
+if ( ( word.indexOf('e') > -1 && word.indexOf('e') < vowelIndex ) || vowelIndex === -1 ) {
+    vowelIndex = word.indexOf('e');
 }
 
-var begin = word.splice(0, vowelIndex);
-var end = word.splice(vowelIndex, word.length);
+if ( ( word.indexOf('i') > -1 && word.indexOf('i') < vowelIndex ) || vowelIndex === -1 ) {
+    vowelIndex = word.indexOf('i');
+}
+if ( ( word.indexOf('o') > -1 && word.indexOf('o') < vowelIndex ) || vowelIndex === -1 ) {
+    vowelIndex = word.indexOf('o');
+}
+if ( ( word.indexOf('u') > -1 && word.indexOf('u') < vowelIndex ) || vowelIndex === -1 ) {
+    vowelIndex = word.indexOf('u');
+}
+if (vowelIndex === 0) {
+  return word + 'yay';
+}
+else {
+  var firstPart = word.slice(0, vowelIndex);
+  var restWord = word.slice(vowelIndex, word.length);
+  return restWord + firstPart + 'ay';
+}
 
-return end + begin + 'ay';
+
+
+}
 
 
 function getPrompt() {

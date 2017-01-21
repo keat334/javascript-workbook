@@ -1,5 +1,4 @@
 'use strict';
-
 var assert = require('assert');
 var colors = require('colors/safe');
 var readline = require('readline');
@@ -8,11 +7,12 @@ var rl = readline.createInterface({
   output: process.stdout
 });
 
-var board = [];
-var solution = '';
-var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+// console.log(colors.blue('test')); how to call the colors package
 
-var move;
+var board = [];
+var solution = 'abcd';
+var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+var hint = [];
 
 function printBoard() {
   for (var i = 0; i < board.length; i++) {
@@ -20,14 +20,11 @@ function printBoard() {
   }
 }
 
-function generateSolution(solution, guess) {
- 
+function generateSolution() {
   for (var i = 0; i < 4; i++) {
     var randomIndex = getRandomInt(0, letters.length);
     solution += letters[randomIndex];
   }
-  
-
 }
 
 function getRandomInt(min, max) {
@@ -35,40 +32,45 @@ function getRandomInt(min, max) {
 }
 
 function generateHint(solution, guess) {
-  // your code here
-  
-  solution = 'abce'
-  var numberOfCorrectLetterLocations =0;
-  var numberOfLettersInWrongLocation =0;
-  var solutionArray = solution.split('');
-  var guessArray = guess.split('');
 
-  for(var i =0; i < solutionArray.length; i++)
-  {
-    if(solutionArray[i] === guessArray[i])
-    {
-      numberOfCorrectLetterLocations ++;
+  var correctionLetterLocations = 0;
+  var correctLetters = 0;
+  var solutionArray = solution.split('');
+  var guessArray = guess.split(''); //split returns the string from guess and solution and turning it into an array
+
+  for(var i = 0; i< solutionArray.length; i++){
+
+    if(solutionArray[i] === guessArray[i]){
+      correctionLetterLocations++; //counter of number of correct letter locations
+
       solutionArray[i] = null;
     }
   }
+// is used to let the computer know to put null in the spot where a match was found perfectly in position so our next code won't see it.
 
-  for(var i =0; i < solutionArray.length; i++)
-  {
-    if(solutionArray.indexOf(guessArray[i]) > -1){
+  for(var i = 0; i< solutionArray.length; i++){
+    var targetIndex = solutionArray.indexOf(guessArray[i]);
+      if (targetIndex > -1) {
+        correctLetters++;
 
-    }    numberOfLettersInWrongLocation ++;
-    solutionArray[i] = null;
-  }
+        solutionArray[targetIndex] = null;
+      }
 }
+
+  hint = correctionLetterLocations + '-' + correctLetters;
+  return hint;
 }
 
 function mastermind(guess) {
-  // your code here
-  move++
-  if(guess == solution){
-    return "Whatever"
+  if (guess === solution) {
+    return 'You guessed it!';
   }
-  generateHint()
+  else {
+    generateHint(solution, guess);
+  }
+  board.push(hint + ' ' + guess);
+
+  return guess;
 }
 
 
@@ -107,6 +109,6 @@ if (typeof describe === 'function') {
 
 } else {
 
- //  generateSolution();
+  generateSolution();
   getPrompt();
 }
